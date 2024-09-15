@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add album</title>
+  </head>
+  <body>
+    <form method="POST" action="create">
+      {% csrf_token %}
+      <p>
+        <label>name</label><br />
+        <input type="text" name="name" value="{{album.name}}" />
+      </p>
+      <p>
+        <label>author</label><br />
+        <input type="text" name="author" value="{{album.author}}" />
+      </p>
+      <p>
+        <label>genre</label><br />
+        <input type="text" name="genre" value="{{album.genre}}" />
+      </p>
+      <p>
+        <label>year</label><br />
+        <input type="date" name="year" value="{{album.year}}" />
+      </p>
+      <input type="submit" value="Save" />
+    </form>
+  </body>
+</html>

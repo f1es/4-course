@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Мое первое Django-приложение</title>
+  </head>
+  <body>
+    <h1>Music albums</h1>
+
+    <a href="create">Add album</a>
+
+    <table>
+      {% for album in albums %}
+      <tr>
+        <td>{{album.name}}</td>
+        <td>{{album.author}}</td>
+        <td>{{album.genre}}</td>
+        <td>{{album.year}}</td>
+        <td>
+          <a href="edit/{{album.id}}">Change</a> |
+          <a href="delete/{{album.id}}">Del</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
