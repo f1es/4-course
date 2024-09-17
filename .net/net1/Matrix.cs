@@ -6,7 +6,7 @@ public class Matrix
 
     public Matrix(int size)
     {
-		matrix = new double[size, size];
+		matrix = new double[5, 3];
     }
     public void Print()
 	{
@@ -45,7 +45,14 @@ public class Matrix
 			return;
 		}
 
-		for (int i = 0; i < matrix.GetLength(0); i++)
+		var minimumLength = int.MaxValue;
+		for (int i = 0; i < matrix.Rank; i++)
+		{
+			if (minimumLength > matrix.GetLength(i))
+				minimumLength = matrix.GetLength(i);
+		}
+
+		for (int i = 0; i < minimumLength; i++)
 		{
 			var temp = matrix[i, number];
 			matrix[i, number] = matrix[number, i];

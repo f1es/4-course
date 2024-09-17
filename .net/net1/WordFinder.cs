@@ -12,7 +12,15 @@ public class WordFinder
 
     public void PrintWordCount(string word)
     {
-        var count = Regex.Matches(text, word).Count();
+        var textArray = text.Split(' ');
+        var count = 0;
+        foreach(var wordInArray  in textArray)
+        {
+            if (wordInArray == word)
+                count++;
+        }
+
+        //var count = Regex.Matches(text, word).Count();
         Console.WriteLine($"В этом тексте {count} слов {word}");
     }
 }
