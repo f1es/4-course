@@ -31,6 +31,7 @@ def send_message(socket: socket, message: str) -> None:
     data = message.encode()
     socket.send(data)
 
+
 server_address = ('localhost', 8080)
 client_socket = connect(server_address)
 
