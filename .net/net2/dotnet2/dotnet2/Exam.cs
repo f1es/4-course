@@ -9,22 +9,22 @@ public class Exam : IPrintable
 	public Student Student 
 	{ 
 		get => _student; 
-		set => _student = value; 
+		private set => _student = value; 
 	}
 	public DateTime Date 
 	{ 
 		get => _date; 
-		set => _date = value; 
+		private set => _date = value; 
 	}
 	public int Grade 
 	{ 
 		get => _grade; 
-		set => _grade = value; 
+		private set => _grade = value; 
 	}
 	public List<string> Questions 
 	{ 
 		get => _questions; 
-		set => _questions = value; 
+		private set => _questions = value; 
 	}
 
 	public Exam(

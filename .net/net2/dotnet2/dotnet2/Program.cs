@@ -33,4 +33,30 @@ class Program
 
 		//throw new CustomException("Thing that should not be");
 	}
+
+	public static Student CreateStudent()
+	{
+		var firstName = Console.ReadLine();
+		var lastName = Console.ReadLine();
+		var student = new Student(firstName, lastName);
+		return student;
+	}
+
+	public static List<string> CreateQuestions()
+	{
+		var questions = new List<string>();
+		for (int i = 0; i < 5; i ++)
+		{
+			questions.Add(Console.ReadLine());
+		}
+		return questions;
+	}
+
+	public static Exam CreateExam(Student student, List<string> questions)
+	{
+		var date = DateTime.Parse(Console.ReadLine());
+		var grade = int.Parse(Console.ReadLine());
+		var exam = new Exam(student, date, grade, questions);
+		return exam;
+	}
 }

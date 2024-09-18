@@ -21,6 +21,11 @@ public abstract class Human
 		string firstName, 
 		string lastName)
     {
+		if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName)) 
+		{
+			throw new CustomException("Human should have first name and last name");
+		}
+
         _firstName = firstName;
 		_lastName = lastName;
     }
