@@ -3,7 +3,8 @@
 def function_on_interval(min: int, max: int) -> float:
     result = 0
     for i in range(min, max):
-        result += function(i)
+        result = function(i)
+        print(result)
     return result
 
 
