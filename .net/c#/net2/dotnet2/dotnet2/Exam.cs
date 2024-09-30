@@ -1,4 +1,6 @@
-﻿namespace dotnet2;
+﻿using dotnet2.Exceptions;
+
+namespace dotnet2;
 
 public class Exam : IPrintable
 {
@@ -19,7 +21,13 @@ public class Exam : IPrintable
 	public int Grade 
 	{ 
 		get => _grade; 
-		private set => _grade = value; 
+		private set
+		{
+			if (value < 0 || value > 10)
+				throw new IncorrectGradeException($"Grade should be in range 0 to 10, your input {value}");
+
+			_grade = value;
+		}
 	}
 	public List<string> Questions 
 	{ 
@@ -52,5 +60,30 @@ public class Exam : IPrintable
 		{
 			Console.WriteLine("\t - " + question);
 		}
+	}
+
+	public static Exam Input()
+	{
+		Console.WriteLine("Enter exam");
+
+		var student = Student.Input();
+
+		Console.Write("Enter exam date:");
+		var date = DateTime.Parse(Console.ReadLine());
+
+		Console.Write("Enter exam grade:");
+		var grade = int.Parse(Console.ReadLine());
+
+		var questions = new List<string>();
+		Console.Write("Enter questions count:");
+
+		var count = int.Parse(Console.ReadLine());
+		for (int i = 0; i < count; i++)
+		{
+			Console.Write("Enter exam question:");
+			questions.Add(Console.ReadLine());
+		}
+
+		return new Exam(student, date, grade, questions);
 	}
 }

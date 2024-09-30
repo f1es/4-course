@@ -1,12 +1,13 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace dotnet2;
+﻿namespace dotnet2;
 
 public class Exams : IPrintable
 {
 	private List<Exam> _exams;
 
-    public Exams()
+	public int Count =>
+	 _exams.Count;
+
+	public Exams()
     {
         _exams = new List<Exam>();
     }

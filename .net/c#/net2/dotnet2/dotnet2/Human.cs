@@ -1,4 +1,6 @@
-﻿namespace dotnet2;
+﻿using dotnet2.Exceptions;
+
+namespace dotnet2;
 
 public abstract class Human
 {
@@ -23,7 +25,7 @@ public abstract class Human
     {
 		if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName)) 
 		{
-			throw new CustomException("Human should have first name and last name");
+			throw new CustomException("First name and last name cannot be empty");
 		}
 
         _firstName = firstName;

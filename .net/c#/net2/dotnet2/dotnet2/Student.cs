@@ -4,7 +4,7 @@ public class Student : Human, IPrintable
 {
 	public Student(string firstName, string lastName) :
 		base(firstName, lastName)
-	{ 
+	{
 
 	}
 
@@ -12,5 +12,18 @@ public class Student : Human, IPrintable
 	{
 		Console.WriteLine("\tSTUDENT");
 		Console.WriteLine($"Student: {FirstName} {LastName}");
+	}
+
+	public static Student Input()
+	{
+		Console.WriteLine("Enter student");
+
+		Console.Write("Enter student first name:");
+		var firstName = Console.ReadLine();
+
+		Console.Write("Enter student last name:");
+		var lastName = Console.ReadLine();
+
+		return new Student(firstName, lastName);
 	}
 }

@@ -5,58 +5,42 @@ class Program
 {
 	public static void Main()
 	{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-		var questions = new List<string>()
-		{
-			"Who?",
-			"Why?",
-			"How?",
-			"Where?",
-			"When?"
-		};
-
-		var student = new Student("Ivanov", "Ivan");
-		var exam = new Exam(student, DateTime.Now, 7, questions);
 		var exams = new Exams();
 
-		exams.AddExam(exam);
-		exams.AddExam(exam);
-		exams.AddExam(exam);
-
-		IPrintable printable = student;
-		printable.Print();
-		printable = exam;
-		printable.Print();
-		printable = exams;
-		printable.Print();
-
-		exams[0].Print();
-
-		//throw new CustomException("Thing that should not be");
-	}
-
-	public static Student CreateStudent()
-	{
-		var firstName = Console.ReadLine();
-		var lastName = Console.ReadLine();
-		var student = new Student(firstName, lastName);
-		return student;
-	}
-
-	public static List<string> CreateQuestions()
-	{
-		var questions = new List<string>();
-		for (int i = 0; i < 5; i ++)
+		while (true)
 		{
-			questions.Add(Console.ReadLine());
+			try
+			{
+				Menu(exams);
+			}
+			catch (Exception ex) 
+			{
+				Console.WriteLine("Ой что-то сломалось");
+				Console.WriteLine(ex.Message);
+			}
 		}
-		return questions;
 	}
 
-	public static Exam CreateExam(Student student, List<string> questions)
+	public static void Menu(Exams exams)
 	{
-		var date = DateTime.Parse(Console.ReadLine());
-		var grade = int.Parse(Console.ReadLine());
-		var exam = new Exam(student, date, grade, questions);
-		return exam;
+		Console.WriteLine("1 - add exam\n2 - print exams\n3 - print exam by index");
+		var menu = int.Parse(Console.ReadLine());
+		Console.Clear();
+
+		switch (menu)
+		{
+			case 1:
+				var exam = Exam.Input();
+				exams.AddExam(exam);
+				break;
+			case 2:
+				exams.Print();
+				break;
+			case 3:
+				Console.WriteLine($"Enter exam index, max - {exams.Count}");
+				var index = int.Parse(Console.ReadLine());
+				exams[index].Print();
+				break;
+		}
 	}
 }
