@@ -37,7 +37,7 @@ class Program
 				exams.Print();
 				break;
 			case 3:
-				Console.WriteLine($"Enter exam index, max - {exams.Count}");
+				Console.WriteLine($"Enter exam index, max - {exams.Count - 1}");
 				var index = int.Parse(Console.ReadLine());
 				exams[index].Print();
 				break;
