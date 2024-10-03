@@ -1,0 +1,68 @@
+﻿<Window x:Class="AKG1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AKG1"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        WindowState="Maximized"
+        Height="1080" Width="1920"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <StackPanel x:Name="AlgorithmSelector"
+                        Margin="25,12.5,0,0">
+                <RadioButton Content="ЦДА"
+                             IsChecked="True"/>
+                <RadioButton Content="Брезенхем"/>
+                <RadioButton Content="Ву"/>
+            </StackPanel>
+
+            <Button Height="35" Width="130"
+                    Margin="0,12.5,0,0"
+                    Content="Clear" Click="ClearButtonClick"/>
+
+        </StackPanel>
+
+        <Viewbox Stretch="Uniform"
+                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                HorizontalAlignment="Right"
+                 Grid.Column="1">
+
+            <Border Background="#FFE2E2E2">
+                <Image x:Name="Image"
+                        Height="100"
+                        Width="170"/>
+            </Border>
+            
+        </Viewbox>
+
+        <!--<Canvas>
+            <Canvas.Background>
+                <DrawingBrush TileMode="Tile" 
+                              Viewport="0,0,10,10" 
+                              ViewportUnits="Absolute">
+                    <DrawingBrush.Drawing>
+                        
+                        <GeometryDrawing>
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,10,10"/>
+                            </GeometryDrawing.Geometry>
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="Gray" Thickness="0.5"/>
+                            </GeometryDrawing.Pen>
+                            
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Canvas.Background>
+        </Canvas>-->
+    </Grid>
+</Window>
