@@ -6,7 +6,7 @@ namespace AKG1.Logic.Line;
 
 public static class WuAlgorithm
 {
-	public static void DrawWuLine(this WriteableBitmap bitmap, Point point0, Point point1, Color color)
+	public static async Task DrawWuLine(this WriteableBitmap bitmap, Point point0, Point point1, Color color, bool isDebug = false)
 	{
 		int x0 = (int)point0.X;
 		int y0 = (int)point0.Y;
@@ -29,7 +29,6 @@ public static class WuAlgorithm
 		int dy = y1 - y0;
 		float gradient = dy / (float)dx;
 
-		// Handle first endpoint
 		float xEnd = Round(x0);
 		float yEnd = y0 + gradient * (xEnd - x0);
 		float xGap = Rfpart(x0 + 0.5f);
@@ -49,7 +48,6 @@ public static class WuAlgorithm
 
 		float intery = yEnd + gradient;
 
-		// Handle second endpoint
 		xEnd = Round(x1);
 		yEnd = y1 + gradient * (xEnd - x1);
 		xGap = Fpart(x1 + 0.5f);
@@ -67,7 +65,6 @@ public static class WuAlgorithm
 			bitmap.SetPixel(xPixel2, yPixel2 + 1, color.SetIntensity(Fpart(yEnd) * xGap));
 		}
 
-		// Main loop
 		for (int x = xPixel1 + 1; x < xPixel2; x++)
 		{
 			if (steep)
@@ -82,6 +79,9 @@ public static class WuAlgorithm
 			}
 
 			intery += gradient;
+
+			if (isDebug)
+				await Task.Delay(100);
 		}
 	}
 

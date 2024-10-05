@@ -10,9 +10,12 @@ public static class PixelBrush
 	{
 		try
 		{
+			bitmap.Lock();
 			byte[] colorData = { color.B, color.G, color.R, color.A };
 			Int32Rect rect = new Int32Rect(x, y, 1, 1);
+			bitmap.AddDirtyRect(rect);
 			bitmap.WritePixels(rect, colorData, 4, 0);
+			bitmap.Unlock();
 		}
 		catch
 		{

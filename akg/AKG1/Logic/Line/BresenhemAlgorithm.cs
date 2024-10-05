@@ -34,7 +34,7 @@ public static class BresenhemAlgorithm
 		}
 	}
 
-	public static void DrawBresenhamLine(this WriteableBitmap bitmap, Point point0, Point point1, Color color)
+	public static async Task DrawBresenhamLine(this WriteableBitmap bitmap, Point point0, Point point1, Color color, bool isDebug = false)
 	{
 		int x0 = (int)point0.X;
 		int y0 = (int)point0.Y;
@@ -49,10 +49,14 @@ public static class BresenhemAlgorithm
 
 		while (true)
 		{
+			if (isDebug)
+				await Task.Delay(100);
+
 			bitmap.SetPixel(x0, y0, color);
 
 			if (x0 == x1 && y0 == y1)
 				break;
+
 			int e2 = 2 * err;
 			if (e2 > -dy)
 			{

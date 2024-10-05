@@ -23,6 +23,8 @@
                              IsChecked="True"/>
                 <RadioButton Content="Брезенхем"/>
                 <RadioButton Content="Ву"/>
+                <CheckBox Name="DebugCheckBox"
+                          Content="Debug"/>
             </StackPanel>
 
             <Button Height="35" Width="130"
@@ -32,14 +34,15 @@
         </StackPanel>
 
         <Viewbox Stretch="Uniform"
-                RenderOptions.BitmapScalingMode="NearestNeighbor"
-                HorizontalAlignment="Right"
+                 RenderOptions.BitmapScalingMode="NearestNeighbor"
+                 HorizontalAlignment="Right"
                  Grid.Column="1">
 
             <Border Background="#FFE2E2E2">
                 <Image x:Name="Image"
                         Height="100"
-                        Width="170"/>
+                        Width="160"
+                        MouseLeftButtonDown="ImageMouseLeftButtonDown"/>
             </Border>
             
         </Viewbox>

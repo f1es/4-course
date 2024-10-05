@@ -26,7 +26,7 @@ public static class DdaAlgorithm
         }
     }
 
-    public static void DrawLineDDA(this WriteableBitmap bitmap, Point point1, Point point2, Color color)
+    public static async Task DrawLineDDA(this WriteableBitmap bitmap, Point point1, Point point2, Color color, bool isDebug= false)
     {
         int dx = (int)(point2.X - point1.X);
         int dy = (int)(point2.Y - point1.Y);
@@ -40,6 +40,9 @@ public static class DdaAlgorithm
 
         for (int i = 0; i <= steps; i++)
         {
+            if (isDebug)
+                await Task.Delay(100);
+
             bitmap.SetPixel((int)Math.Round(x), (int)Math.Round(y), color);
             x += xIncrement;
             y += yIncrement;

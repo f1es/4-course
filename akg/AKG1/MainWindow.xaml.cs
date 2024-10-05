@@ -21,16 +21,18 @@ public partial class MainWindow : Window
 	{
 		InitializeComponent();
 		InitializeBitmap();
-		Image.MouseLeftButtonDown += ImageMouseLeftButtonDown;
-		bitmap.SetPixel(5,5, Colors.Black.SetIntensity(0.1f));
+
+		//bitmap.DrawLineDDA(new Point(0,1), new Point(5,40), Colors.Red, DebugCheckBox.IsChecked.Value);
+		//bitmap.DrawBresenhamLine(new Point(5,1), new Point(10, 40), Colors.Red, DebugCheckBox.IsChecked.Value);
+		//bitmap.DrawWuLine(new Point(10, 1), new Point(15, 40), Colors.Red, DebugCheckBox.IsChecked.Value);
 	}
 	private void InitializeBitmap()
 	{
-		bitmap = new WriteableBitmap((int)Image.Width, (int)Image.Height, 96, 96, PixelFormats.Bgra32, null);
+		bitmap = new WriteableBitmap((int)Image.Width, (int)Image.Height, 91, 91, PixelFormats.Bgra32, null);
 		Image.Source = bitmap;
 	}
 
-	private void ImageMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+	public async void ImageMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 	{
 		Point position = e.GetPosition(Image);
 		int x = (int)position.X;
@@ -48,20 +50,21 @@ public partial class MainWindow : Window
 			switch (selector)
 			{
 				case LineAlghoritmType.DDA:
-					bitmap.DrawLineDDA((Point)firstPoint, (Point)secondPoint, Colors.Black);
+					await bitmap.DrawLineDDA((Point)firstPoint, (Point)secondPoint, Colors.Red, DebugCheckBox.IsChecked.Value);
 					break;
 				case LineAlghoritmType.Bresenhem:
-					bitmap.DrawBresenhamLine((Point)firstPoint, (Point)secondPoint, Colors.Black);
+					await bitmap.DrawBresenhamLine((Point)firstPoint, (Point)secondPoint, Colors.Red, DebugCheckBox.IsChecked.Value);
 					break;
 				case LineAlghoritmType.Wu:
-					bitmap.DrawWuLine((Point)firstPoint, (Point)secondPoint, Colors.Black);
+					await bitmap.DrawWuLine((Point)firstPoint, (Point)secondPoint, Colors.Red, DebugCheckBox.IsChecked.Value);
 					break;
 			}
-
 			
 			firstPoint = null;
 			secondPoint = null;
 		}
+
+		Image.InvalidateVisual();
 	}
 
 	private LineAlghoritmType GetLineAlghoritmType()
