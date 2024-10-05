@@ -1,5 +1,6 @@
 ﻿using AKG1.Enum;
 using AKG1.Logic;
+using AKG1.Logic.Circle;
 using AKG1.Logic.Line;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,9 +23,7 @@ public partial class MainWindow : Window
 		InitializeComponent();
 		InitializeBitmap();
 
-		//bitmap.DrawLineDDA(new Point(0,1), new Point(5,40), Colors.Red, DebugCheckBox.IsChecked.Value);
-		//bitmap.DrawBresenhamLine(new Point(5,1), new Point(10, 40), Colors.Red, DebugCheckBox.IsChecked.Value);
-		//bitmap.DrawWuLine(new Point(10, 1), new Point(15, 40), Colors.Red, DebugCheckBox.IsChecked.Value);
+		bitmap.DrawCircleBresenham(new Point(20, 20), 5, Colors.Red);
 	}
 	private void InitializeBitmap()
 	{
@@ -41,21 +40,42 @@ public partial class MainWindow : Window
 		if (firstPoint is null)
 		{
 			firstPoint = new Point(x, y);
+
+			var selector = GetAlghoritmType();
+			switch(selector)
+			{
+				case AlghoritmType.BresenhemCircle:
+					var radius = 10;
+					int.TryParse(CircleRadiusTextBox.Text, out radius);
+					await bitmap.DrawCircleBresenham(firstPoint.Value, radius, Colors.Red, DebugCheckBox.IsChecked.Value);
+					firstPoint = null;
+					break;
+
+				case AlghoritmType.BresenhemEllipse:
+					var xr = 10;
+					var yr = 5;
+
+					int.TryParse(EllipseRadiusXTextBox.Text, out xr);
+					int.TryParse(EllipseRadiusYTextBox.Text, out yr);
+
+					await bitmap.DrawEllipseBresenham(firstPoint.Value, xr, yr, Colors.Red, DebugCheckBox.IsChecked.Value);
+					break;
+			}
 		}
 		else if (secondPoint is null) 
 		{
 			secondPoint = new Point(x, y);
 
-			var selector = GetLineAlghoritmType();
+			var selector = GetAlghoritmType();
 			switch (selector)
 			{
-				case LineAlghoritmType.DDA:
+				case AlghoritmType.DDA:
 					await bitmap.DrawLineDDA((Point)firstPoint, (Point)secondPoint, Colors.Red, DebugCheckBox.IsChecked.Value);
 					break;
-				case LineAlghoritmType.Bresenhem:
+				case AlghoritmType.Bresenhem:
 					await bitmap.DrawBresenhamLine((Point)firstPoint, (Point)secondPoint, Colors.Red, DebugCheckBox.IsChecked.Value);
 					break;
-				case LineAlghoritmType.Wu:
+				case AlghoritmType.Wu:
 					await bitmap.DrawWuLine((Point)firstPoint, (Point)secondPoint, Colors.Red, DebugCheckBox.IsChecked.Value);
 					break;
 			}
@@ -67,7 +87,7 @@ public partial class MainWindow : Window
 		Image.InvalidateVisual();
 	}
 
-	private LineAlghoritmType GetLineAlghoritmType()
+	private AlghoritmType GetAlghoritmType()
 	{
 		var checkedRadioButton = AlgorithmSelector
 			.Children
@@ -79,14 +99,18 @@ public partial class MainWindow : Window
 		switch(value)
 		{
 			case "ЦДА":
-				return LineAlghoritmType.DDA;
+				return AlghoritmType.DDA;
 			case "Брезенхем":
-				return LineAlghoritmType.Bresenhem;
+				return AlghoritmType.Bresenhem;
 			case "Ву":
-				return LineAlghoritmType.Wu;
+				return AlghoritmType.Wu;
+			case "Окружность Брезенхем":
+				return AlghoritmType.BresenhemCircle;
+			case "Элипс Брезенхем":
+				return AlghoritmType.BresenhemEllipse;
 		}
 
-		return LineAlghoritmType.DDA;
+		return AlghoritmType.DDA;
 	}
 
 	private void ClearButtonClick(object sender, RoutedEventArgs e)

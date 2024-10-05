@@ -17,12 +17,47 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
+            
             <StackPanel x:Name="AlgorithmSelector"
                         Margin="25,12.5,0,0">
+
+                <TextBlock Text="Линии"
+                           HorizontalAlignment="Center"/>
                 <RadioButton Content="ЦДА"
                              IsChecked="True"/>
                 <RadioButton Content="Брезенхем"/>
                 <RadioButton Content="Ву"/>
+
+                <Grid Height="20"/>
+
+                <TextBlock Text="Круги" 
+                           HorizontalAlignment="Center"/>
+                <RadioButton Content="Окружность Брезенхем"/>
+
+                <WrapPanel>
+                    <TextBlock Text="Радиус: "/>
+                    <TextBox Width="50"
+                             Name="CircleRadiusTextBox"
+                             Text="10"/>
+                </WrapPanel>
+
+                <RadioButton Content="Элипс Брезенхем"/>
+
+                <WrapPanel>
+                    <TextBlock Text="Радиус X: "/>
+                    <TextBox Width="50"
+                             Name="EllipseRadiusXTextBox"
+                             Text="10"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Радиус Y: "/>
+                    <TextBox Width="50"
+                             Name="EllipseRadiusYTextBox"
+                             Text="5"/>
+                </WrapPanel>
+
+                <Grid Height="20"/>
+
                 <CheckBox Name="DebugCheckBox"
                           Content="Debug"/>
             </StackPanel>
