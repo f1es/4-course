@@ -60,6 +60,10 @@ public partial class MainWindow : Window
 
 					await bitmap.DrawEllipseBresenham(firstPoint.Value, xr, yr, Colors.Red, DebugCheckBox.IsChecked.Value);
 					break;
+
+				case AlghoritmType.Hyperbola:
+
+					break;
 			}
 		}
 		else if (secondPoint is null) 

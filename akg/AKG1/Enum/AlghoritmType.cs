@@ -10,4 +10,5 @@ public enum AlghoritmType
 
 	BresenhemCircle,
 	BresenhemEllipse,
+	Hyperbola
 }
