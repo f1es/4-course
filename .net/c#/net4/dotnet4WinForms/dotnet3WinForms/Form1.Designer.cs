@@ -34,6 +34,10 @@
 			addButton = new Button();
 			saveButton = new Button();
 			loadButton = new Button();
+			pictureBox = new PictureBox();
+			imageButton = new Button();
+			descriptionTextBox = new TextBox();
+			((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
 			SuspendLayout();
 			// 
 			// listBox1
@@ -42,12 +46,13 @@
 			listBox1.ItemHeight = 15;
 			listBox1.Location = new Point(12, 12);
 			listBox1.Name = "listBox1";
-			listBox1.Size = new Size(212, 424);
+			listBox1.Size = new Size(343, 274);
 			listBox1.TabIndex = 1;
+			listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
 			// 
 			// editButton
 			// 
-			editButton.Location = new Point(230, 12);
+			editButton.Location = new Point(361, 12);
 			editButton.Name = "editButton";
 			editButton.Size = new Size(75, 23);
 			editButton.TabIndex = 2;
@@ -57,7 +62,7 @@
 			// 
 			// deleteButton
 			// 
-			deleteButton.Location = new Point(230, 41);
+			deleteButton.Location = new Point(361, 41);
 			deleteButton.Name = "deleteButton";
 			deleteButton.Size = new Size(75, 23);
 			deleteButton.TabIndex = 3;
@@ -67,7 +72,7 @@
 			// 
 			// addButton
 			// 
-			addButton.Location = new Point(230, 70);
+			addButton.Location = new Point(361, 70);
 			addButton.Name = "addButton";
 			addButton.Size = new Size(75, 23);
 			addButton.TabIndex = 4;
@@ -77,7 +82,7 @@
 			// 
 			// saveButton
 			// 
-			saveButton.Location = new Point(230, 99);
+			saveButton.Location = new Point(361, 99);
 			saveButton.Name = "saveButton";
 			saveButton.Size = new Size(75, 23);
 			saveButton.TabIndex = 5;
@@ -87,7 +92,7 @@
 			// 
 			// loadButton
 			// 
-			loadButton.Location = new Point(230, 128);
+			loadButton.Location = new Point(361, 128);
 			loadButton.Name = "loadButton";
 			loadButton.Size = new Size(75, 23);
 			loadButton.TabIndex = 6;
@@ -95,11 +100,41 @@
 			loadButton.UseVisualStyleBackColor = true;
 			loadButton.Click += loadButton_Click;
 			// 
+			// pictureBox
+			// 
+			pictureBox.Location = new Point(222, 292);
+			pictureBox.Name = "pictureBox";
+			pictureBox.Size = new Size(133, 134);
+			pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+			pictureBox.TabIndex = 7;
+			pictureBox.TabStop = false;
+			// 
+			// imageButton
+			// 
+			imageButton.Location = new Point(361, 157);
+			imageButton.Name = "imageButton";
+			imageButton.Size = new Size(75, 23);
+			imageButton.TabIndex = 8;
+			imageButton.Text = "Image";
+			imageButton.UseVisualStyleBackColor = true;
+			imageButton.Click += imageButton_Click;
+			// 
+			// descriptionTextBox
+			// 
+			descriptionTextBox.Location = new Point(12, 292);
+			descriptionTextBox.Multiline = true;
+			descriptionTextBox.Name = "descriptionTextBox";
+			descriptionTextBox.Size = new Size(204, 134);
+			descriptionTextBox.TabIndex = 9;
+			// 
 			// Form1
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(329, 450);
+			ClientSize = new Size(448, 519);
+			Controls.Add(descriptionTextBox);
+			Controls.Add(imageButton);
+			Controls.Add(pictureBox);
 			Controls.Add(loadButton);
 			Controls.Add(saveButton);
 			Controls.Add(addButton);
@@ -108,7 +143,9 @@
 			Controls.Add(listBox1);
 			Name = "Form1";
 			Text = "Form1";
+			((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
 			ResumeLayout(false);
+			PerformLayout();
 		}
 
 		#endregion
@@ -119,5 +156,8 @@
 		private Button addButton;
 		private Button saveButton;
 		private Button loadButton;
+		private PictureBox pictureBox;
+		private Button imageButton;
+		private TextBox descriptionTextBox;
 	}
 }

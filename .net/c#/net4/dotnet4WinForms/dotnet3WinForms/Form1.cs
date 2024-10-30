@@ -12,6 +12,9 @@ namespace dotnet3WinForms
 			//new Student("Sergey","Sergeev"),
 		};
 
+		public Student SelectedStudent => 
+			listBox1.SelectedItem as Student;
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -42,14 +45,12 @@ namespace dotnet3WinForms
 
 		private void editButton_Click(object sender, EventArgs e)
 		{
-			var selectedStudent = listBox1.SelectedItem as Student;
-
-			if (selectedStudent is null)
+			if (SelectedStudent is null)
 				return;
 
-			var index = Students.IndexOf(selectedStudent);
+			var index = Students.IndexOf(SelectedStudent);
 
-			using (var editForm = new StudentForm(selectedStudent))
+			using (var editForm = new StudentForm(SelectedStudent))
 			{
 				if (editForm.ShowDialog(this) == DialogResult.OK)
 				{
@@ -62,18 +63,52 @@ namespace dotnet3WinForms
 
 		private void saveButton_Click(object sender, EventArgs e)
 		{
-			var selectedStudent = listBox1.SelectedItem as Student;
-
-			if (selectedStudent is null)
+			if (SelectedStudent is null)
 				return;
 
-			fileManager.SaveStudent(selectedStudent);
+			SelectedStudent.Description = descriptionTextBox.Text;
+			
+			try
+			{
+				fileManager.SaveStudent(SelectedStudent);
+			}
+			catch (Exception ex) 
+			{
+				MessageBox.Show(ex.Message);
+			}
 		}
 
 		private void loadButton_Click(object sender, EventArgs e)
 		{
 			var loadedStudent = fileManager.LoadStudent();
 			Students.Add(loadedStudent);
+			UpdateStudent(SelectedStudent);
+		}
+
+		private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			UpdateStudent(SelectedStudent);
+		}
+
+		private void imageButton_Click(object sender, EventArgs e)
+		{
+			if (SelectedStudent is null)
+				return;
+
+			fileManager.SelectImage(SelectedStudent, pictureBox);
+		}
+
+		private void UpdateStudent(Student student)
+		{
+			if (student is null)
+			{
+				pictureBox.ImageLocation = null;
+				descriptionTextBox.Text = string.Empty;
+				return;
+			}
+
+			fileManager.LoadImage(student, pictureBox);
+			descriptionTextBox.Text = student.Description;
 		}
 	}
 }

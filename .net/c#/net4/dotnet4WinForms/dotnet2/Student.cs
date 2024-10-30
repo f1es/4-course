@@ -3,6 +3,8 @@
 public class Student : Human, IPrintable
 {
 	public DateOnly CreationDate { get; set; }
+	public string ImageSource { get; set; }
+	public string Description { get; set; }
 	public Student(string firstName, string lastName) :
 		base(firstName, lastName)
 	{
