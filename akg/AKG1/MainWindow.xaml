@@ -30,6 +30,7 @@
 
                 <Grid Height="20"/>
 
+                
                 <TextBlock Text="Круги" 
                            HorizontalAlignment="Center"/>
                 <RadioButton Content="Окружность Брезенхем"/>
@@ -56,6 +57,28 @@
                              Text="5"/>
                 </WrapPanel>
 
+                <RadioButton Content="Гипербола Брезенхем"/>
+                <WrapPanel>
+                    <TextBlock Text="A: "/>
+                    <TextBox Width="50"
+                             Name="HyperbolaA"
+                             Text="10"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="B: "/>
+                    <TextBox Width="50"
+                             Name="HyperbolaB"
+                             Text="5"/>     
+                </WrapPanel>
+
+                <RadioButton Content="Парабола"/>
+                <WrapPanel>
+                    <TextBlock Text="B: "/>
+                    <TextBox Width="50"
+                           Name="ParabolaRange"
+                           Text="5"/>
+                </WrapPanel>
+
                 <Grid Height="20"/>
 
                 <CheckBox Name="DebugCheckBox"
@@ -64,14 +87,16 @@
 
             <Button Height="35" Width="130"
                     Margin="0,12.5,0,0"
-                    Content="Clear" Click="ClearButtonClick"/>
+                    Content="Очистить" Click="ClearButtonClick"/>
 
         </StackPanel>
 
         <Viewbox Stretch="Uniform"
                  RenderOptions.BitmapScalingMode="NearestNeighbor"
-                 HorizontalAlignment="Right"
-                 Grid.Column="1">
+                 HorizontalAlignment="Left"
+                 Grid.Column="1"
+                 Height="1000"
+                 Width="1600">
 
             <Border Background="#FFE2E2E2">
                 <Image x:Name="Image"

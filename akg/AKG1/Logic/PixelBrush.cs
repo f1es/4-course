@@ -8,6 +8,12 @@ public static class PixelBrush
 {
 	public static void SetPixel(this WriteableBitmap bitmap, int x, int y, Color color)
 	{
+		bool isPointHasNegativeValue = x < 0 || y < 0;
+		bool isPointBiggerThanBitmap = x >= bitmap.PixelWidth || y >= bitmap.PixelHeight;
+
+		if (isPointHasNegativeValue || isPointBiggerThanBitmap)
+			return;
+
 		try
 		{
 			bitmap.Lock();

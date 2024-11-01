@@ -22,8 +22,6 @@ public partial class MainWindow : Window
 	{
 		InitializeComponent();
 		InitializeBitmap();
-
-		bitmap.DrawCircleBresenham(new Point(20, 20), 5, Colors.Red);
 	}
 	private void InitializeBitmap()
 	{
@@ -59,10 +57,27 @@ public partial class MainWindow : Window
 					int.TryParse(EllipseRadiusYTextBox.Text, out yr);
 
 					await bitmap.DrawEllipseBresenham(firstPoint.Value, xr, yr, Colors.Red, DebugCheckBox.IsChecked.Value);
+					firstPoint = null;
 					break;
 
 				case AlghoritmType.Hyperbola:
 
+					var a = 10;
+					var b = 15;
+					int.TryParse(HyperbolaA.Text, out a);
+					int.TryParse(HyperbolaB.Text, out b);
+
+					await bitmap.DrawHyperbola(a, b, firstPoint.Value, Colors.Red, DebugCheckBox.IsChecked.Value);
+					firstPoint = null;
+					break;
+
+				case AlghoritmType.Parabola:
+
+					var range = 10;
+					int.TryParse(ParabolaRange.Text, out range);
+
+					await bitmap.DrawParabola(firstPoint.Value, range, Colors.Red, DebugCheckBox.IsChecked.Value);
+					firstPoint = null;
 					break;
 			}
 		}
@@ -88,7 +103,7 @@ public partial class MainWindow : Window
 			secondPoint = null;
 		}
 
-		Image.InvalidateVisual();
+		//Image.InvalidateVisual();
 	}
 
 	private AlghoritmType GetAlghoritmType()
@@ -112,6 +127,10 @@ public partial class MainWindow : Window
 				return AlghoritmType.BresenhemCircle;
 			case "Элипс Брезенхем":
 				return AlghoritmType.BresenhemEllipse;
+			case "Гипербола Брезенхем":
+				return AlghoritmType.Hyperbola;
+			case "Парабола":
+				return AlghoritmType.Parabola;
 		}
 
 		return AlghoritmType.DDA;
