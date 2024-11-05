@@ -6,7 +6,7 @@ namespace AKG1.Logic.Circle;
 
 public static class BresenhamHyperbola
 {
-	public static async Task DrawHyperbola(this WriteableBitmap bitmap, int a, int b, Point point, Color color, bool isDebug = false)
+	public static async Task DrawHyperbolaBresenhem(this WriteableBitmap bitmap, int a, int b, Point point, Color color, bool isDebug = false)
 	{
 		// Начальные координаты
 		int x = a;
@@ -41,5 +41,27 @@ public static class BresenhamHyperbola
 	private static void PutPixel(WriteableBitmap bitmap, int x, int y, Color color)
 	{
 		bitmap.SetPixel(x, y, color);
+	}
+
+	public static async Task DrawHyperbola(this WriteableBitmap bitmap, Point point, int scale, Color color, bool isDebug = false)
+	{
+		//int centerX = 40; // Центр гиперболы по X (можете изменить)
+		//int centerY = 12; // Центр гиперболы по Y (можете изменить)
+		//int scale = 10;   // Масштаб (чтобы гипербола была видна)
+
+		for (float x = -20; x <= 20; x += 0.01f)
+		{
+			float y = (float)Math.Sqrt(x * x + 1);
+
+			var calcX = (int)point.X + (int)(x * scale);
+			var calcYminus = (int)point.Y - (int)(y * scale);
+			var calcYplus = (int)point.Y + (int)(y * scale);
+
+			PutPixel(bitmap, calcX, calcYminus, color);
+			PutPixel(bitmap, calcX, calcYplus, color);
+
+			if (isDebug)
+				await Task.Delay(15);
+		}
 	}
 }

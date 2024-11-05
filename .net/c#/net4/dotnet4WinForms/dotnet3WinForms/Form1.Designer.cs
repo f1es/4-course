@@ -37,6 +37,7 @@
 			pictureBox = new PictureBox();
 			imageButton = new Button();
 			descriptionTextBox = new TextBox();
+			sortComboBox = new ComboBox();
 			((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
 			SuspendLayout();
 			// 
@@ -126,12 +127,23 @@
 			descriptionTextBox.Name = "descriptionTextBox";
 			descriptionTextBox.Size = new Size(204, 134);
 			descriptionTextBox.TabIndex = 9;
+			descriptionTextBox.TextChanged += descriptionTextBox_TextChanged;
+			// 
+			// sortComboBox
+			// 
+			sortComboBox.FormattingEnabled = true;
+			sortComboBox.Location = new Point(361, 186);
+			sortComboBox.Name = "sortComboBox";
+			sortComboBox.Size = new Size(75, 23);
+			sortComboBox.TabIndex = 10;
+			sortComboBox.SelectedIndexChanged += sortComboBox_SelectedIndexChanged;
 			// 
 			// Form1
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(448, 519);
+			Controls.Add(sortComboBox);
 			Controls.Add(descriptionTextBox);
 			Controls.Add(imageButton);
 			Controls.Add(pictureBox);
@@ -159,5 +171,6 @@
 		private PictureBox pictureBox;
 		private Button imageButton;
 		private TextBox descriptionTextBox;
+		private ComboBox sortComboBox;
 	}
 }
