@@ -33,6 +33,7 @@ printfn "Введите коэффициенты a, b и c:"
 let a = Convert.ToDouble(Console.ReadLine())
 let b = Convert.ToDouble(Console.ReadLine())
 let c = Convert.ToDouble(Console.ReadLine())
+printfn "Уравнение (x^4 * %f) + (x^2 * %f) + (%f)" a b c
 
 // Решение биквадратного уравнения
 solveBiquadratic a b c
