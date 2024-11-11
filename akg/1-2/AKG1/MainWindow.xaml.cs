@@ -62,12 +62,12 @@ public partial class MainWindow : Window
 
 				case AlghoritmType.Hyperbola:
 
-					var a = 10;
-					var b = 15;
-					int.TryParse(HyperbolaA.Text, out a);
-					int.TryParse(HyperbolaB.Text, out b);
+					var scale = 10;
+					//var b = 15;
+					int.TryParse(HyperbolaScale.Text, out scale);
+					//int.TryParse(HyperbolaB.Text, out b);
 
-					await bitmap.DrawHyperbola(a, b, firstPoint.Value, Colors.Red, DebugCheckBox.IsChecked.Value);
+					await bitmap.DrawHyperbola(firstPoint.Value, scale, Colors.Red, DebugCheckBox.IsChecked.Value);
 					firstPoint = null;
 					break;
 
@@ -127,7 +127,7 @@ public partial class MainWindow : Window
 				return AlghoritmType.BresenhemCircle;
 			case "Элипс Брезенхем":
 				return AlghoritmType.BresenhemEllipse;
-			case "Гипербола Брезенхем":
+			case "Гипербола":
 				return AlghoritmType.Hyperbola;
 			case "Парабола":
 				return AlghoritmType.Parabola;

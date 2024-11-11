@@ -57,23 +57,23 @@
                              Text="5"/>
                 </WrapPanel>
 
-                <RadioButton Content="Гипербола Брезенхем"/>
+                <RadioButton Content="Гипербола"/>
                 <WrapPanel>
-                    <TextBlock Text="A: "/>
+                    <TextBlock Text="Размер: "/>
                     <TextBox Width="50"
-                             Name="HyperbolaA"
+                             Name="HyperbolaScale"
                              Text="10"/>
                 </WrapPanel>
-                <WrapPanel>
+                <!--<WrapPanel>
                     <TextBlock Text="B: "/>
                     <TextBox Width="50"
                              Name="HyperbolaB"
                              Text="5"/>     
-                </WrapPanel>
+                </WrapPanel>-->
 
                 <RadioButton Content="Парабола"/>
                 <WrapPanel>
-                    <TextBlock Text="B: "/>
+                    <TextBlock Text="Кол-во точек: "/>
                     <TextBox Width="50"
                            Name="ParabolaRange"
                            Text="5"/>
